@@ -62,6 +62,32 @@ class TestTriangles(unittest.TestCase):
     def testScaleneTriangleE(self):
         self.assertNotEqual(classifyTriangle(3, 4, 5), 'Scalene', '3,4,5 is not a scalene triangle')
 
+    def testInvalidTriangleA(self):
+        self.assertEqual(classifyTriangle('One', 2, 3), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle('One', 'Two', 3), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle('One', 'Two', 'Three'), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(2.136, 5, 6), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(0, 12, 12), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(3, 0, 3), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(4, 4, 0), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(0, 0, 0), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(-1, 1, 2), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(-2, -1, 2), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(2, -2, 3), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(3, -2, -1), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(-3, -2, -1), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(250, 120, 150), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(20, 180, 250), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(350, 450, 550), 'InvalidInput', 'Invalid Input')
+        self.assertEqual(classifyTriangle(350, 150, 250), 'InvalidInput', 'Invalid Input')
+
+    def testInvalidTriangleB(self):
+        self.assertEqual(classifyTriangle(1, 10, 12), 'NotATriangle', 'Sum of 2 sides not greater than or equal to third side')
+        self.assertEqual(classifyTriangle(3, 16, 12), 'NotATriangle', 'Sum of 2 sides not greater than or equal to third side')
+        self.assertEqual(classifyTriangle(25, 10, 12), 'NotATriangle', 'Sum of 2 sides not greater than or equal to third side')
+        self.assertEqual(classifyTriangle(2, 25, 95), 'NotATriangle', 'Sum of 2 sides not greater than or equal to third side')
+
+
 if __name__ == '__main__':
     print('Running unit tests')
     unittest.main(exit=False, verbosity=2)
